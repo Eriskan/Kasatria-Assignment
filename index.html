@@ -432,14 +432,17 @@
 				targets.sphere.push(object);
 			}
 
-			/* ---- DOUBLE HELIX: two intertwined strands, offset 180 degrees ---- */
+						/* ---- DOUBLE HELIX: two intertwined strands, offset 180 degrees ---- */
+			const HELIX_RADIUS = 900;
+			const THETA_STEP = 0.5;    // radians per step around the axis
+			const Y_STEP = 32;         // vertical rise per step
 			for (let i = 0; i < n; i++) {
-				const strand = i % 2;               // 0 = strand A, 1 = strand B
-				const step = Math.floor(i / 2);      // position along the strand
-				const theta = step * 0.35 + Math.PI + (strand === 1 ? Math.PI : 0); // 180deg offset for second strand
-				const y = -(step * 16) + 500;
+				const strand = i % 2;                 // 0 = strand A, 1 = strand B
+				const step = Math.floor(i / 2);        // position along that strand
+				const theta = step * THETA_STEP + Math.PI + (strand === 1 ? Math.PI : 0);
+				const y = -(step * Y_STEP) + 800;
 				const object = new THREE.Object3D();
-				object.position.setFromCylindricalCoords(900, theta, y);
+				object.position.setFromCylindricalCoords(HELIX_RADIUS, theta, y);
 				vector.x = object.position.x * 2;
 				vector.y = object.position.y;
 				vector.z = object.position.z * 2;
