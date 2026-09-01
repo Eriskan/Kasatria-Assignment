@@ -150,6 +150,12 @@
 			overflow: hidden;
 			position: relative;
 		}
+		.strand-a {
+			outline: 3px solid rgba(0,255,255,0.9);
+		}
+		.strand-b {
+			outline: 3px solid rgba(255,0,180,0.9);
+		}
 		.card:hover {
 			box-shadow: 0px 0px 16px rgba(0,255,255,0.85);
 			border: 1px solid rgba(127,255,255,0.85);
@@ -350,7 +356,7 @@
 
 			peopleData.forEach((person, i) => {
 				const card = document.createElement('div');
-				card.className = 'card';
+				card.className = 'card ' + (i % 2 === 0 ? 'strand-a' : 'strand-b');
 				card.style.backgroundColor = netWorthColor(person.netWorth);
 
 				const photo = document.createElement('img');
@@ -433,9 +439,9 @@
 			}
 
 						/* ---- DOUBLE HELIX: two intertwined strands, offset 180 degrees ---- */
-			const HELIX_RADIUS = 900;
-			const THETA_STEP = 0.5;    // radians per step around the axis
-			const Y_STEP = 32;         // vertical rise per step
+			const HELIX_RADIUS = 750;
+			const THETA_STEP = 0.6;    // radians per step around the axis
+			const Y_STEP = 45;         // vertical rise per step
 			for (let i = 0; i < n; i++) {
 				const strand = i % 2;                 // 0 = strand A, 1 = strand B
 				const step = Math.floor(i / 2);        // position along that strand
